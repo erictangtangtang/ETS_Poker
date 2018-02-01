@@ -13,72 +13,51 @@ I used Eclipse as development IDE, and Gradle as development tool kit. I chose J
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
+First, I create a class called Card which represent one card in the deck, each card contains two variables, rank and suit.
+In the end, each card that returned as a string will be like:
 
 ```
-until finished
+King of hearts
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+In class Card,I implement some simple functions such as convert Card object into a string, etc.
+
+Then, I design another class called PokerCards, which represent a deck of cards. In this class, I used an ArrayList as a container
+to contain all cards. Everytime the constructor was called, this container will be intiate and filled with integers. So far, each
+card is represent by two shorts (which is rank and suit in Card class), rather than a string.
+
+I also add a class called PokerRun which is a simple interface that allow users to call shuffle() and dealOneCard() by themsevles.
+
+```
+Menu:
+1.Shuffle
+2.DealOneCard
+3.Quit
+
+```
+When user run main function in PokerRun, this menu will continuously pop out until user input "3".
+
+Moreover, I also write a Junit test file called Test_Poker.java, In that file, I called shuffle and dealOneCard recursively.
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+In the test, I called shuffle and dealOneCard 52 times, and used a hashmap to store all returned cards. Then I used
+assertEquals() to judge if any card repeat. The result is false, so the test passed.
 
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
+Then I called these two functions again, since all cards in Arraylist has been removed, it should return NullPointerException,
+so I used try-catch, and catch the exception, so this test passed as well.
 
 ```
-Give an example
+ try{
+		   PC.shuffle();
+		   String temp = PC.dealOneCard().toString();
+		   //Test the 53rd calls
+	   }catch(NullPointerException e){
+		   System.out.print("NullPointerException caught");
+	   }
+
 ```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* **Yihang Tang** 
